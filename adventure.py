@@ -289,6 +289,7 @@ if __name__ == "__main__":
     choice = None
     menu_off = True
     location_change = True
+    game_finished = False
     bonus_awarded = False
     item_choice = None
     drop_choice = None
@@ -428,6 +429,7 @@ if __name__ == "__main__":
             if steps_remaining <= 0:
                 print("No moving steps remaining. You cannot move to a new location. Game over!")
                 game.ongoing = False
+                game_finished = True
             else:
                 steps_remaining -= 1
                 result = location.available_commands[choice]
@@ -438,6 +440,9 @@ if __name__ == "__main__":
 
     if set(game.get_location(1).items) == set(game.get_the_items()):
         print("Congratulations! You have won the game!")
-    print("You had " + str(steps_remaining) + " step(s) remaining.")
-    final_score = player.score + steps_remaining
-    print("Your final score is " + str(final_score))
+        game_finished = True
+
+    if game_finished:
+        print("You had " + str(steps_remaining) + " step(s) remaining.")
+        final_score = player.score + steps_remaining
+        print("Your final score is " + str(final_score))
