@@ -1,0 +1,140 @@
+{
+  "locations": [
+    {
+      "id": 1,
+      "name": "UC Residence",
+      "brief_description": "You are at UC Residence. The stone facade of the building reflects its historic charm. It feels welcoming yet slightly daunting.",
+      "long_description": "You are standing in front of UC Residence, a historic building with a grand stone facade. The air is cool, and a faint smell of old wood lingers. The entrance to the residence is through a set of heavy wooden doors, which creak slightly when opened. The pathways outside are busy with students rushing between classes.",
+      "available_commands": {
+        "go south 1": 2,
+        "go south 2": 3
+      },
+      "items": ["Room Key"]
+    },
+    {
+      "id": 2,
+      "name": "Robarts",
+      "brief_description": "You are outside Robarts Library. Its brutalist architecture towers over you.",
+      "long_description": "You are standing outside Robarts Library, an imposing structure of concrete and steel. The building’s unique brutalist design is both admired and criticized. Students hustle in and out, balancing stacks of books, while others linger outside, chatting and sipping coffee. The air is filled with the energy of academic pursuit.",
+      "available_commands": {
+        "go north": 1,
+        "go east": 3,
+        "go south": 6
+      },
+      "items": ["Crystal Key"]
+    },
+    {
+      "id": 3,
+      "name": "McLennan Physical Laboratories",
+      "brief_description": "You are at McLennan Physical Laboratories. The air hums faintly with the sounds of experiments.",
+      "long_description": "You are at McLennan Physical Laboratories, a building known for its cutting-edge research. The halls resonate with the clatter of equipment and quiet conversations of students discussing formulas and theories. Posters about quantum mechanics and physics conferences are pinned to the notice boards. The faint smell of chemicals lingers in the air.",
+      "available_commands": {
+        "go north": 1,
+        "go west": 2,
+        "go east": 4,
+        "go south": 7
+      },
+      "items": []
+    },
+    {
+      "id": 4,
+      "name": "Abandoned Library",
+      "brief_description": "You are in an abandoned library. The air is stale, and the room is dimly lit.",
+      "long_description": "You step into the abandoned library, and an eerie silence envelops you. Dust covers the shelves, and the books seem untouched for years. The dim light from a single broken window casts long shadows across the room. A faint rustling sound can be heard in the distance, adding to the unsettling atmosphere.",
+      "available_commands": {
+        "go west": 3
+      },
+      "items": ["Laptop Charger", "USB Drive"]
+    },
+    {
+      "id": 5,
+      "name": "OISE",
+      "brief_description": "You are at OISE. The building is buzzing with activity, as always.",
+      "long_description": "You are at the Ontario Institute for Studies in Education (OISE). The halls are alive with the hum of discussions about education and pedagogy. Bulletin boards are packed with colorful flyers advertising workshops and events. The interior feels warm and welcoming, with a mix of modern and traditional decor.",
+      "available_commands": {
+        "go east": 6
+      },
+      "items": ["Monitor"]
+    },
+    {
+      "id": 6,
+      "name": "Convocation Hall",
+      "brief_description": "You are outside Convocation Hall. The iconic dome looms over you.",
+      "long_description": "You stand outside Convocation Hall, a historic venue with a grand dome that has witnessed countless graduation ceremonies. Students often gather on its steps, posing for photos or simply enjoying the day. The building’s classical architecture is breathtaking, and its significance is felt by all who pass by.",
+      "available_commands": {
+        "go north": 2,
+        "go west": 5,
+        "go east": 7
+      },
+      "items": []
+    },
+    {
+      "id": 7,
+      "name": "Exam Centre",
+      "brief_description": "You are at the Exam Centre. Tension is in the air.",
+      "long_description": "You are at the Exam Centre, where rows of students anxiously wait to be called in. The area is quiet, save for the occasional shuffle of papers and whispered conversations. The atmosphere is heavy with anticipation and nervous energy, as everyone prepares to face their assessments.",
+      "available_commands": {
+        "go north": 3,
+        "go west": 6
+      },
+      "items": ["Lucky Mug"]
+    }
+  ],
+  "items": [
+    {
+      "name": "USB Drive",
+      "weight": 2.0,
+      "the_key": "Crystal Key",
+      "puzzle_to_obtain": null
+    },
+    {
+      "name": "Laptop Charger",
+      "weight": 4.0,
+      "the_key": null,
+      "puzzle_to_obtain": null
+    },
+    {
+      "name": "Monitor",
+      "weight": 10.0,
+      "the_key": "Room Key",
+      "puzzle_to_obtain": null
+    },
+    {
+      "name": "Lucky Mug",
+      "weight": 5.0,
+      "the_key": null,
+      "puzzle_to_obtain": 3
+    }
+  ],
+  "keys": [
+    {
+      "key_name": "Room Key",
+      "weight": 0,
+      "puzzle_to_obtain": 1,
+      "the_item": "Monitor"
+    },
+    {
+      "key_name": "Crystal Key",
+      "weight": 0,
+      "puzzle_to_obtain": 2,
+      "the_item": "USB Drive"
+    }
+  ],
+  "puzzles": [
+    {
+      "id_puzzle": 1,
+      "description": "Logic Puzzle to Obtain Room Key: O, T, T, F, F, S, S, E, ___ ? Type 'q' if you want to quit this puzzle: ",
+      "answer": "n"
+    },
+    {
+      "id_puzzle": 2,
+      "description": "You should follow some order when moving between locations to pick up the Crystal Key. Hint: What might study preparation before an exam passing by convocation hall look like in reverse?",
+      "answer": [7, 6]
+    },
+    {
+      "id_puzzle": 3,
+      "description": "Hint: To pick up the lucky mug, you need the weight of ALL ITEMS dropped in this location!!",
+      "answer": 21
+    }
+  ]
+}
