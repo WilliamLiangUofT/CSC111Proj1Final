@@ -85,8 +85,6 @@ class AdventureGame:
         for item_data in data['items']:
             item_obj = Item(
                 item_data['name'],
-                item_data['description'],
-                item_data['start_position'],
                 item_data['weight'],
                 item_data['the_key'],
                 item_data['puzzle_to_obtain']
@@ -107,8 +105,6 @@ class AdventureGame:
         for key_data in data['keys']:
             key_obj = Key(
                 key_data['key_name'],
-                key_data['description'],
-                key_data['start_position'],
                 key_data['weight'],
                 key_data['puzzle_to_obtain'],
                 key_data['the_item']
@@ -181,7 +177,7 @@ class AdventureGame:
 
     def check_puzzle(self, item_str: str, logger: EventList, loc: Location) -> bool:
         """
-        Check if the player can solve the puzzle required to obtain the specified item or key.
+        Check if the item has a puzzle that the player needs to solve in order to obtain it.
         """
         if item_str in self.get_the_items():
             need_puzzle = self.get_item(item_str).puzzle_to_obtain
@@ -245,7 +241,6 @@ class AdventureGame:
         if total == self._puzzles[puzzle_id].answer:
             return True
         print(self._puzzles[puzzle_id].description + '\n')
-
         return False
 
     def look(self, loc: Location) -> None:
@@ -275,13 +270,13 @@ if __name__ == "__main__":
     # When you are ready to check your work with python_ta, uncomment the following lines.
     # (Delete the "#" and space before each line.)
     # IMPORTANT: keep this code indented inside the "if __name__ == '__main__'" block
-    import python_ta
-    python_ta.check_all(config={
-        'max-line-length': 120,
-        'disable': ['R1705', 'E9998', 'E9999']
-    })
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'max-line-length': 120,
+    #     'disable': ['R1705', 'E9998', 'E9999']
+    # })
 
-    player = Player([], 0.0, 0)
+    player = Player([], 0)
     game_log = EventList()
     game = AdventureGame('game_data.json', 1)
     menu = ["look", "inventory", "score", "undo", "log", "weights", "quit"]
@@ -294,6 +289,10 @@ if __name__ == "__main__":
     item_choice = None
     drop_choice = None
     steps_remaining = 30
+
+    print("GAME OBJECTIVE: Collect the items: Monitor, USB Drive, Laptop Charger, and Lucky Mug, by solving "
+          "various puzzles and obtaining keys, and bring all these items back and DROP them "
+          "ALL at UNIVERSITY COLLEGE (UC)!\n")
 
     while game.ongoing and set(game.get_location(1).items) != set(game.get_the_items()):
         location = game.get_location()
@@ -311,8 +310,8 @@ if __name__ == "__main__":
         print("At this location, you can also:")
         for action in location.available_commands:
             print("-", action)
-        print("- Pick item (enter pickitem)")
-        print("- Drop item (enter dropitem)")
+        print("- pickitem")
+        print("- dropitem")
 
         choice = input("\nEnter action: ").lower().strip()
         while (choice not in location.available_commands and choice not in menu
@@ -358,7 +357,7 @@ if __name__ == "__main__":
 
             elif choice == "inventory":
                 player.display_inventory()
-                print("Your current inventory weight is " + str(game.sum_inv_weight(player)) + " lbs")
+                print("Your current inventory weight is " + str(game.sum_inv_weight(player)) + " lbs\n")
             elif choice == "weights":
                 print("Item Weights:")
                 for item in game.get_the_items():
